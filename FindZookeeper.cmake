@@ -7,7 +7,7 @@
 
 find_path(
 	ZOOKEEPER_INCLUDE_DIR
-	NAMES zookeeper.h
+	NAMES zookeeper/zookeeper.h
 	PATHS ${CONAN_INCLUDE_DIRS_ZOOKEEPER}
 )
 

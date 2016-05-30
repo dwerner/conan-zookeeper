@@ -6,26 +6,26 @@ from conans import CMake
 
 class zookeeperConan(ConanFile):
     name = "zookeeper"
-    version = "0.13.3"
+    version = "3.4.8"
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False]}
     default_options = "shared=False"
     url="http://github.com/dwerner/conan-zookeeper"
-    license="https://github.com/google/googletest/blob/master/googletest/LICENSE"
+    license="https://www.apache.org/licenses/LICENSE-2.0"
     exports="FindZookeeper.cmake"
     unzipped_name = "zookeeper-%s" % version
-    zip_name = "%s.zip" % unzipped_name
+    zip_name = "%s.tar.gz" % unzipped_name
 
     def source(self):
-        url = "https://apache.mirror.gtcomm.net/zookeeper/%s/%s" % (self.unzipped_name, self.zip_name)  
+        url = "http://apache.mirror.rafal.ca/zookeeper/%s/%s" % (self.unzipped_name, self.zip_name)  
+        print url
         download(url, self.zip_name)
         unzip(self.zip_name)
         os.unlink(self.zip_name)
 
     def build(self):
-        cd_build = "cd %s" % self.unzipped_name
-        self.run("%s && make" % cd_build)
+        self.run("cd %s/src/c && ./configure && make" % self.unzipped_name)
 
     def package(self):
         # Copy findzookeeper script into project
