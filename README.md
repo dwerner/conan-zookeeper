@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.org/dwerner/conan-hiredis.svg)](https://travis-ci.org/dwerner/conan-hiredis)
+[![Build Status](https://travis-ci.org/dwerner/conan-zookeeper.svg)](https://travis-ci.org/dwerner/conan-zookeeper)
 
 
-# conan-hiredis
+# conan-zookeeper
 
-[Conan.io](https://conan.io) package for hiredis library
+[Conan.io](https://conan.io) package for zookeeper library
 
 ## Build packages
 
@@ -13,23 +13,23 @@ Download conan client from [Conan.io](https://conan.io) and run:
     
 ## Upload packages to server
 
-    $ conan upload hiredis/0.13.3@dwerner/stable --all
+    $ conan upload zookeeper/0.13.3@dwerner/stable --all
     
 ## Reuse the packages
 
 ### Basic setup
 
-    $ conan install hiredis/0.13.3@dwerner/stable
+    $ conan install zookeeper/0.13.3@dwerner/stable
     
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
     
     [requires]
-    hiredis/0.13.3@dwerner/testing
+    zookeeper/0.13.3@dwerner/testing
 
     [options]
-    hiredis:shared=true # false
+    zookeeper:shared=true # false
     
     [generators]
     txt
