@@ -19,7 +19,6 @@ class zookeeperConan(ConanFile):
 
     def source(self):
         url = "http://apache.mirror.rafal.ca/zookeeper/%s/%s" % (self.unzipped_name, self.zip_name)  
-        print url
         download(url, self.zip_name)
         unzip(self.zip_name)
         os.unlink(self.zip_name)
@@ -32,14 +31,15 @@ class zookeeperConan(ConanFile):
         self.copy("FindZookeeper.cmake", ".", ".")
 
         # Copying headers
-        self.copy(pattern="*.h", dst="include", src="./include", keep_path=False)
+        self.copy(pattern="*.h", dst="include/zookeeper", src="%s/src/c/include" % self.unzipped_name, keep_path=False)
 
+        libdir = "%s/src/c/.libs/" % self.unzipped_name
         # Copying static and dynamic libs
-        self.copy(pattern="*.a", dst="lib", src=".libs/", keep_path=False)
-        self.copy(pattern="*.lib", dst="lib", src=".libs/", keep_path=False)
-        self.copy(pattern="*.dll", dst="bin", src=".libs/", keep_path=False)
-        self.copy(pattern="*.so*", dst="lib", src=".libs/", keep_path=False)
-        self.copy(pattern="*.dylib*", dst="lib", src=".libs/", keep_path=False)      
+        self.copy(pattern="*.a", dst="lib", src=libdir, keep_path=False)
+        self.copy(pattern="*.lib", dst="lib", src=libdir, keep_path=False)
+        self.copy(pattern="*.so*", dst="lib", src=libdir, keep_path=False)
+        self.copy(pattern="*.dylib*", dst="lib", src=libdir, keep_path=False)      
+        self.copy(pattern="*.dll", dst="bin", src=libdir, keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = ['zookeeper']

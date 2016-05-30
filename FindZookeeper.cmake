@@ -13,7 +13,7 @@ find_path(
 
 find_library(
 	ZOOKEEPER_LIBRARY
-	NAMES zookeeper
+	NAMES zookeeper_st
 	PATHS ${CONAN_LIB_DIRS_ZOOKEEPER}
 )
 
