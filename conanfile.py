@@ -32,6 +32,7 @@ class zookeeperConan(ConanFile):
 
         # Copying headers
         self.copy(pattern="*.h", dst="include/zookeeper", src="%s/src/c/include" % self.unzipped_name, keep_path=False)
+        self.copy(pattern="*.h", dst="include/zookeeper", src="%s/src/c/generated" % self.unzipped_name, keep_path=False)
 
         libdir = "%s/src/c/.libs/" % self.unzipped_name
         # Copying static and dynamic libs
